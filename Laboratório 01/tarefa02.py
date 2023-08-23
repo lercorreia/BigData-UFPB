@@ -2,7 +2,7 @@ from pymongo import MongoClient
 import sys
 import json
 
-client = MongoClient("mongodb+srv://dev:EIhYcyK6shA9qPgn@bigdataanalytics.zyl9tkj.mongodb.net/app1")
+client = MongoClient("mongodb+srv://dev:KEY@bigdataanalytics.zyl9tkj.mongodb.net/app1")
 db = client['app1']
 tweet = db['tweet']
 

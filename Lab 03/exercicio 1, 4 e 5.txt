@@ -1,0 +1,48 @@
+
+USE lab03;
+
+CREATE TABLE IF NOT EXISTS personagens (
+  id UUID PRIMARY KEY,
+  nome text,
+  idade int,
+  genero text,
+  ocupacao text
+);
+
+INSERT INTO personagens (id, nome, idade, genero, ocupacao)
+VALUES
+  (ty40gxK4kSQo3tiXpr0RWIBW, 'João', 30, 'Masculino', 'Engenheiro');
+
+INSERT INTO personagens (id, nome, idade, genero, ocupacao)
+VALUES
+  (kwOEaNB4xS74k4XCh1cK0bK4, 'Maria', 25, 'Feminino', 'Médica');
+
+INSERT INTO personagens (id, nome, idade, genero, ocupacao)
+VALUES
+  (5fwwxRHpADeBKKsHFzOGihGo, 'Pedro', 35, 'Masculino', 'Advogado');
+
+INSERT INTO personagens (id, nome, idade, genero, ocupacao)
+VALUES
+  (GD1r78HBn9VwlaDg8QEapPrz, 'Ana', 28, 'Feminino', 'Professor');
+
+SELECT *
+FROM personagens
+WHERE ocupacao = 'Engenheiro'
+ALLOW FILTERING;
+
+UPDATE personagens
+SET nome = 'José'
+WHERE id = 5fwwxRHpADeBKKsHFzOGihGo;
+
+DELETE FROM personagens
+WHERE id = GD1r78HBn9VwlaDg8QEapPrz;
+
+CREATE INDEX IF NOT EXISTS idx_idade ON personagens (idade);
+
+SELECT *
+FROM personagens
+WHERE idade > 30
+ALLOW FILTERING;
+
+
+DROP TABLE personagens;

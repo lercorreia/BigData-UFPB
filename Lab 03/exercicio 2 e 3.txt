@@ -1,0 +1,86 @@
+
+USE lab03;
+
+CREATE TABLE IF NOT EXISTS personagens (
+  id UUID PRIMARY KEY,
+  nome text,
+  habilidades tuple<text, text, text>,
+  itens list<text>,
+  amigos set<text>,
+  informacoes map<text, text>
+);
+
+INSERT INTO personagens (id, nome, idade, genero, habilidades, itens, amigos, informacoes)
+VALUES
+  (1, 'Personagem 1', 30, 'Masculino', ('Habilidade1', 'Habilidade2', 'Habilidade3'), ['ItemA', 'ItemB'], {'Amigo1', 'Amigo2'}, {'chave1': 'valor1', 'chave2': 'valor2'});
+
+INSERT INTO personagens (id, nome, idade, genero, habilidades, itens, amigos, informacoes)
+VALUES
+  (2, 'Personagem 2', 25, 'Feminino', ('Habilidade4', 'Habilidade5'), ['ItemC', 'ItemD', 'ItemE'], {'Amigo3', 'Amigo4', 'Amigo5'}, {'chave3': 'valor3'});
+
+INSERT INTO personagens (id, nome, idade, genero, habilidades, itens, amigos, informacoes)
+VALUES
+  (3, 'Personagem 3', 35, 'Masculino', ('Habilidade6', 'Habilidade7'), ['ItemF', 'ItemG'], {'Amigo6'}, {'chave4': 'valor4', 'chave5': 'valor5'});
+
+INSERT INTO personagens (id, nome, idade, genero, habilidades, itens, amigos, informacoes)
+VALUES
+  (4, 'Personagem 4', 28, 'Feminino', ('Habilidade8', 'Habilidade9', 'Habilidade10'), ['ItemH', 'ItemI'], {'Amigo7', 'Amigo8'}, {'chave6': 'valor6', 'chave7': 'valor7'});
+
+INSERT INTO personagens (id, nome, idade, genero, habilidades, itens, amigos, informacoes)
+VALUES
+  (5, 'Personagem 5', 40, 'Masculino', ('Habilidade11', 'Habilidade12'), ['ItemJ'], {'Amigo9', 'Amigo10'}, {'chave8': 'valor8'});
+
+
+CREATE TABLE IF NOT EXISTS caixa_itens (
+  id UUID PRIMARY KEY,
+  descricao text,
+  detalhes tuple<text, int>,
+  itens list<text>,
+  categorias set<text>,
+  informacoes map<text, text>
+);
+
+INSERT INTO outra_tabela (id, descricao, detalhes, itens, categorias, informacoes)
+VALUES
+  (6, 'Item 1', ('Detalhe1', 42), ['ItemA', 'ItemB'], {'CategoriaA', 'CategoriaB'}, {'Chave1': 'Valor1', 'Chave2': 'Valor2'});
+
+INSERT INTO outra_tabela (id, descricao, detalhes, itens, categorias, informacoes)
+VALUES
+  (7, 'Item 2', ('Detalhe2', 56), ['ItemC', 'ItemD'], {'CategoriaC', 'CategoriaD'}, {'Chave3': 'Valor3'});
+
+INSERT INTO outra_tabela (id, descricao, detalhes, itens, categorias, informacoes)
+VALUES
+  (8, 'Item 3', ('Detalhe3', 32), ['ItemE', 'ItemF'], {'CategoriaE', 'CategoriaF'}, {'Chave4': 'Valor4', 'Chave5': 'Valor5'});
+
+INSERT INTO outra_tabela (id, descricao, detalhes, itens, categorias, informacoes)
+VALUES
+  (9, 'Item 4', ('Detalhe4', 77), ['ItemG', 'ItemH'], {'CategoriaG', 'CategoriaH'}, {'Chave6': 'Valor6', 'Chave7': 'Valor7'});
+
+INSERT INTO outra_tabela (id, descricao, detalhes, itens, categorias, informacoes)
+VALUES
+  (10, 'Item 5', ('Detalhe5', 90), ['ItemI', 'ItemJ'], {'CategoriaI', 'CategoriaJ'}, {'Chave8': 'Valor8'});
+
+
+UPDATE caixa_itens
+SET itens[2] = 'Novo Item', itens = itens + ['Item Adicional']
+WHERE id = 6;
+
+UPDATE caixa_itens
+SET categorias = categorias - {'CategoriaA'}, categorias = categorias + {'Nova Categoria'}
+WHERE id = 6;
+
+UPDATE caixa_itens
+SET informacoes['Chave1'] = 'Novo Valor', informacoes = informacoes - {'Chave2'}
+WHERE id = 6;
+
+UPDATE personagens
+SET itens[2] = 'Novo Item', itens = itens + ['Item Adicional']
+WHERE id = 1;
+
+UPDATE personagens
+SET amigos = amigos - {'Amigo1'}, amigos = amigos + {'Novo Amigo'}
+WHERE id = 1;
+
+UPDATE personagens
+SET informacoes['Chave1'] = 'Novo Valor', informacoes = informacoes - {'Chave2'}
+WHERE id = 1;
